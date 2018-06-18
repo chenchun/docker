@@ -195,6 +195,7 @@ func (cli *Client) checkResponseErr(serverResp serverResponse) error {
 		return nil
 	}
 
+	defer serverResp.body.Close()
 	body, err := ioutil.ReadAll(serverResp.body)
 	if err != nil {
 		return err
